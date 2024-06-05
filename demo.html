@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Review analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="demo_files/libs/clipboard/clipboard.min.js"></script>
+<script src="demo_files/libs/quarto-html/quarto.js"></script>
+<script src="demo_files/libs/quarto-html/popper.min.js"></script>
+<script src="demo_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="demo_files/libs/quarto-html/anchor.min.js"></script>
+<link href="demo_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="demo_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="demo_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="demo_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="demo_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#data-introduction" id="toc-data-introduction" class="nav-link" data-scroll-target="#data-introduction">Data Introduction</a></li>
+  <li><a href="#monthly-review-counts-of-barossa-valley-australia-airbnb" id="toc-monthly-review-counts-of-barossa-valley-australia-airbnb" class="nav-link" data-scroll-target="#monthly-review-counts-of-barossa-valley-australia-airbnb">Monthly Review Counts of Barossa Valley Australia Airbnb</a>
+  <ul class="collapse">
+  <li><a href="#insights" id="toc-insights" class="nav-link" data-scroll-target="#insights">Insights</a></li>
+  </ul></li>
+  <li><a href="#top-20-most-frequent-words-in-reviews" id="toc-top-20-most-frequent-words-in-reviews" class="nav-link" data-scroll-target="#top-20-most-frequent-words-in-reviews">Top 20 most Frequent Words in Reviews</a>
+  <ul class="collapse">
+  <li><a href="#insights-1" id="toc-insights-1" class="nav-link" data-scroll-target="#insights-1">Insights</a></li>
+  </ul></li>
+  <li><a href="#trends-of-most-common-words-over-the-time" id="toc-trends-of-most-common-words-over-the-time" class="nav-link" data-scroll-target="#trends-of-most-common-words-over-the-time">Trends of most common words over the time</a>
+  <ul class="collapse">
+  <li><a href="#insights-2" id="toc-insights-2" class="nav-link" data-scroll-target="#insights-2">Insights</a>
+  <ul class="collapse">
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">Interpretation:</a></li>
+  <li><a href="#suggested-actions" id="toc-suggested-actions" class="nav-link" data-scroll-target="#suggested-actions">Suggested Actions:</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#top-20-bigrams-and-trigrams" id="toc-top-20-bigrams-and-trigrams" class="nav-link" data-scroll-target="#top-20-bigrams-and-trigrams">Top 20 Bigrams and Trigrams</a>
+  <ul class="collapse">
+  <li><a href="#interpretation-of-the-top-20-trigrams-plot" id="toc-interpretation-of-the-top-20-trigrams-plot" class="nav-link" data-scroll-target="#interpretation-of-the-top-20-trigrams-plot">Interpretation of the Top 20 Trigrams Plot</a>
+  <ul class="collapse">
+  <li><a href="#suggested-actions-based-on-the-plot" id="toc-suggested-actions-based-on-the-plot" class="nav-link" data-scroll-target="#suggested-actions-based-on-the-plot">Suggested Actions Based on the Plot</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#top-40-words-contribution-towards-positive-or-negative-sentiment-of-the-reviews" id="toc-top-40-words-contribution-towards-positive-or-negative-sentiment-of-the-reviews" class="nav-link" data-scroll-target="#top-40-words-contribution-towards-positive-or-negative-sentiment-of-the-reviews">Top 40 words contribution towards positive or negative sentiment of the reviews</a></li>
+  <li><a href="#lets-dive-deeper-into-the-reviews-having-the-word-fire-for-further-analysis" id="toc-lets-dive-deeper-into-the-reviews-having-the-word-fire-for-further-analysis" class="nav-link" data-scroll-target="#lets-dive-deeper-into-the-reviews-having-the-word-fire-for-further-analysis">Lets dive deeper into the reviews having the word fire for further analysis</a>
+  <ul class="collapse">
+  <li><a href="#insights-3" id="toc-insights-3" class="nav-link" data-scroll-target="#insights-3">Insights</a></li>
+  </ul></li>
+  <li><a href="#content-of-the-reviews" id="toc-content-of-the-reviews" class="nav-link" data-scroll-target="#content-of-the-reviews">Content of the Reviews</a></li>
+  <li><a href="#average-monthly-sentiment-scores" id="toc-average-monthly-sentiment-scores" class="nav-link" data-scroll-target="#average-monthly-sentiment-scores">Average monthly sentiment scores</a>
+  <ul class="collapse">
+  <li><a href="#insights-4" id="toc-insights-4" class="nav-link" data-scroll-target="#insights-4">Insights</a></li>
+  </ul></li>
+  <li><a href="#suggestions-for-digital-marketing" id="toc-suggestions-for-digital-marketing" class="nav-link" data-scroll-target="#suggestions-for-digital-marketing">Suggestions for Digital Marketing</a>
+  <ul class="collapse">
+  <li><a href="#suggested-action-plan" id="toc-suggested-action-plan" class="nav-link" data-scroll-target="#suggested-action-plan">Suggested Action Plan:</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Review analysis</h1>
+<p class="subtitle lead">Airbnb (Baroosa Valley Data)</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This report presents an analysis of Airbnb reviews for properties in Barossa Valley, Australia. The goal is to understand the sentiment and key aspects of guest experiences.</p>
+</section>
+<section id="data-introduction" class="level1">
+<h1>Data Introduction</h1>
+<p>let’s take a look at our data</p>
+<p>importing required libraries</p>
+<div id="16d92a5b" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># importing libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> string</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'punkt'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'stopwords'</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'wordnet'</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'omw-1.4'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>nltk.download(<span class="st">'vader_lexicon'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.corpus <span class="im">import</span> stopwords</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> word_tokenize</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.stem <span class="im">import</span> WordNetLemmatizer</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.tokenize <span class="im">import</span> regexp_tokenize, wordpunct_tokenize, blankline_tokenize</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> wordcloud <span class="im">import</span> WordCloud</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langdetect <span class="im">import</span> detect</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langdetect.lang_detect_exception <span class="im">import</span> LangDetectException</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.dates <span class="im">as</span> mdates</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk <span class="im">import</span> bigrams, trigrams</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nltk.sentiment <span class="im">import</span> SentimentIntensityAnalyzer</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nrclex <span class="im">import</span> NRCLex</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress specific warning</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="052c9ab1" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reading data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"reviews.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">listing_id</th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">reviewer_id</th>
+<th data-quarto-table-cell-role="th">reviewer_name</th>
+<th data-quarto-table-cell-role="th">comments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1125097</td>
+<td>7269778</td>
+<td>2013-09-13</td>
+<td>3053083</td>
+<td>Stephen</td>
+<td>While I didnt have the pleasure of meeting Hea...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1125097</td>
+<td>10081118</td>
+<td>2014-01-29</td>
+<td>1898281</td>
+<td>Rus</td>
+<td>Great host and amazing accommodation! \r&lt;br/&gt;...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1125097</td>
+<td>10335170</td>
+<td>2014-02-14</td>
+<td>2725224</td>
+<td>Teresa</td>
+<td>A lovely and convenient location, surrounded b...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1125097</td>
+<td>10881952</td>
+<td>2014-03-11</td>
+<td>8982612</td>
+<td>Kathy</td>
+<td>A wonderful experience from start to finish . ...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1125097</td>
+<td>11872081</td>
+<td>2014-04-17</td>
+<td>10977428</td>
+<td>Phillip</td>
+<td>The coach house is in a lovely location. We we...</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>We have listing_id, id, date of the review, reviewer_id, reviewer_name and the comments or you can say the content of the review</p>
+<div id="4cbf810a" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to detect language</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> is_english(text):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">isinstance</span>(text, <span class="bu">str</span>):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> detect(text) <span class="op">==</span> <span class="st">'en'</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> LangDetectException:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to the 'text' column and filter out non-English reviews</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'is_english'</span>] <span class="op">=</span> df[<span class="st">'comments'</span>].<span class="bu">apply</span>(is_english)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>english_reviews_df <span class="op">=</span> df[df[<span class="st">'is_english'</span>]]</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(english_reviews_df.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(18865, 7)</code></pre>
+</div>
+</div>
+<p>so we have 18867 observations or reviews you can say. before working with the data let’s preprocess the reviews as it is the text data</p>
+<div id="9e867496" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to preprocess text</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> preprocess_text(text):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Lowercase the text</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> text.lower()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remove HTML tags</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r'&lt;[^&gt;]+&gt;'</span>, <span class="st">' '</span>, text)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remove URLs</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r'http\S+|www\S+|https\S+'</span>, <span class="st">''</span>, text, flags<span class="op">=</span>re.MULTILINE)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remove punctuation</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> text.translate(<span class="bu">str</span>.maketrans(<span class="st">''</span>, <span class="st">''</span>, string.punctuation))</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remove numbers</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r'\d+'</span>, <span class="st">''</span>, text)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tokenization</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    tokens <span class="op">=</span> word_tokenize(text)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remove stopwords</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    stop_words <span class="op">=</span> <span class="bu">set</span>(stopwords.words(<span class="st">'english'</span>))</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    tokens <span class="op">=</span> [word <span class="cf">for</span> word <span class="kw">in</span> tokens <span class="cf">if</span> word <span class="kw">not</span> <span class="kw">in</span> stop_words]</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Lemmatization</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    lemmatizer <span class="op">=</span> WordNetLemmatizer()</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    tokens <span class="op">=</span> [lemmatizer.lemmatize(word) <span class="cf">for</span> word <span class="kw">in</span> tokens]</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Join tokens back to string</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    preprocessed_text <span class="op">=</span> <span class="st">' '</span>.join(tokens)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> preprocessed_text</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the preprocessing function to the 'text' column</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>english_reviews_df[<span class="st">'cleaned_text'</span>] <span class="op">=</span> english_reviews_df[<span class="st">'comments'</span>].<span class="bu">apply</span>(preprocess_text)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the cleaned DataFrame</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>english_reviews_df[[<span class="st">'comments'</span>, <span class="st">'cleaned_text'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">comments</th>
+<th data-quarto-table-cell-role="th">cleaned_text</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>While I didnt have the pleasure of meeting Hea...</td>
+<td>didnt pleasure meeting heather person anything...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Great host and amazing accommodation! \r&lt;br/&gt;...</td>
+<td>great host amazing accommodation went celebrat...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>A lovely and convenient location, surrounded b...</td>
+<td>lovely convenient location surrounded grape fa...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>A wonderful experience from start to finish . ...</td>
+<td>wonderful experience start finish back amazing...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>The coach house is in a lovely location. We we...</td>
+<td>coach house lovely location fortunate enough w...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">19142</td>
+<td>Highly recommend Rebecca's place.&lt;br/&gt;Renovate...</td>
+<td>highly recommend rebecca place renovated squea...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19143</td>
+<td>Nice spot close to main street very comfortabl...</td>
+<td>nice spot close main street comfortable stay</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">19144</td>
+<td>Good location, easy to find and they answered ...</td>
+<td>good location easy find answered question prom...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19145</td>
+<td>Great location, close to the town centre. &lt;br/...</td>
+<td>great location close town centre responsive ho...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">19146</td>
+<td>We LOVED our stay, the property is so calm and...</td>
+<td>loved stay property calm tranquil many spot si...</td>
+</tr>
+</tbody>
+</table>
+
+<p>18865 rows × 2 columns</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="monthly-review-counts-of-barossa-valley-australia-airbnb" class="level1">
+<h1>Monthly Review Counts of Barossa Valley Australia Airbnb</h1>
+<div id="cell-fig-Reviews-count-per-month" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_monthly_review_counts(reviews_df, date_column, title<span class="op">=</span><span class="st">'Monthly Reviews Count'</span>):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Plots the monthly review counts, average review line, and a trendline.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">    reviews_df (pd.DataFrame): DataFrame containing the review data.</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">    date_column (str): Name of the column containing the date of the reviews.</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">    title (str): Title of the plot.</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">    None: Displays the plot.</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert the date column to datetime</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    reviews_df[date_column] <span class="op">=</span> pd.to_datetime(reviews_df[date_column])</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Group by month and count reviews</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    reviews_df[<span class="st">'month'</span>] <span class="op">=</span> reviews_df[date_column].dt.to_period(<span class="st">'M'</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    monthly_reviews <span class="op">=</span> reviews_df.groupby(<span class="st">'month'</span>).size().reset_index(name<span class="op">=</span><span class="st">'count'</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    monthly_reviews[<span class="st">'month'</span>] <span class="op">=</span> monthly_reviews[<span class="st">'month'</span>].dt.to_timestamp()</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the average monthly reviews count</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    average_reviews <span class="op">=</span> monthly_reviews[<span class="st">'count'</span>].mean()</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the data</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">7</span>))</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the review trend</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    ax.plot(monthly_reviews[<span class="st">'month'</span>], monthly_reviews[<span class="st">'count'</span>], color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the average line</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    ax.axhline(y<span class="op">=</span>average_reviews, color<span class="op">=</span><span class="st">'blue'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="ss">f'Average Monthly Reviews Count:</span><span class="ch">\n</span><span class="sc">{</span><span class="bu">int</span>(average_reviews)<span class="sc">}</span><span class="ss">'</span>, transform<span class="op">=</span>ax.transAxes, </span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>            fontsize<span class="op">=</span><span class="dv">14</span>, verticalalignment<span class="op">=</span><span class="st">'top'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add a trendline (moving average)</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    monthly_reviews[<span class="st">'trend'</span>] <span class="op">=</span> monthly_reviews[<span class="st">'count'</span>].rolling(window<span class="op">=</span><span class="dv">12</span>).mean()</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    ax.plot(monthly_reviews[<span class="st">'month'</span>], monthly_reviews[<span class="st">'trend'</span>], color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Format the plot</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    ax.xaxis.set_major_locator(mdates.MonthLocator(interval<span class="op">=</span><span class="dv">3</span>))</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    ax.xaxis.set_major_formatter(mdates.DateFormatter(<span class="st">'%Y-%m'</span>))</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    plt.title(title)</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Month'</span>)</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Number of Reviews'</span>)</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    plt.grid(<span class="va">True</span>)</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Show the plot</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage:</span></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>plot_monthly_review_counts(english_reviews_df, <span class="st">'date'</span>, <span class="st">'Monthly Reviews Count of Barossa Valley Australia Airbnb'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-reviews-count-per-month" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reviews-count-per-month-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="demo_files/figure-html/fig-reviews-count-per-month-output-1.png" width="1332" height="662" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reviews-count-per-month-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Monthly Review Counts of Barossa Valley Australia Airbnb
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="insights" class="level2">
+<h2 class="anchored" data-anchor-id="insights">Insights</h2>
+<p>The plot illustrates the monthly review count for Airbnbs in the Barossa Valley, Australia, over the period from 2013 to 2024.</p>
+<ol type="1">
+<li><strong>Monthly Reviews Count (Black Line)</strong>:
+<ul>
+<li>The black line represents the number of reviews each month.</li>
+<li>From 2013 to around 2018, the number of monthly reviews was relatively low and stable.</li>
+<li>Starting from 2018, there is a noticeable upward trend in the number of reviews, indicating an increase in the popularity of Airbnbs in the Barossa Valley.</li>
+</ul></li>
+<li><strong>Trend Line (Red Dashed Line)</strong>:
+<ul>
+<li>The red dashed line represents the moving average trend line (using a 12-month window), which smooths out short-term fluctuations and highlights longer-term trends.</li>
+<li>This line clearly shows a consistent upward trend from 2015 onwards, with some fluctuations around the general upward trajectory.</li>
+<li>There are noticeable peaks and troughs, particularly around the years 2020 to 2022, which could be associated with external factors such as travel restrictions or seasonal variations.</li>
+</ul></li>
+<li><strong>Average Monthly Reviews Count (Blue Line)</strong>:
+<ul>
+<li>The blue horizontal line represents the average monthly review count, which is approximately 153.</li>
+<li>The text “Average Monthly Reviews Count: 153” is annotated on the plot to highlight this value.</li>
+<li>For much of the period before 2018, the monthly review counts are below this average. From 2018 onwards, the counts frequently exceed the average, particularly in the latter part of the plot.</li>
+</ul></li>
+<li><strong>Key Observations</strong>:
+<ul>
+<li><strong>Initial Stability</strong>: The number of reviews remained quite stable and low until around 2015, with slight variations but no significant growth.</li>
+<li><strong>Growth Period</strong>: Starting from 2015, there is a noticeable growth in the number of reviews, which becomes more pronounced from 2018 onwards. This growth trend continues until the end of the observed period.</li>
+<li><strong>Impact of External Factors</strong>: There are some significant dips and peaks in the review counts, especially around early 2020 and late 2021. These could be due to various factors such as the COVID-19 pandemic affecting travel patterns.</li>
+</ul></li>
+</ol>
+<p>Overall, the plot effectively visualizes the growing popularity of Airbnbs in the Barossa Valley, highlighting both short-term fluctuations and the longer-term trend. The annotations and trend lines help to contextualize the data, making it easier to understand the underlying patterns and average values.</p>
+</section>
+</section>
+<section id="top-20-most-frequent-words-in-reviews" class="level1">
+<h1>Top 20 most Frequent Words in Reviews</h1>
+<div id="cell-fig-freq-words" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_top_words(reviews_df, text_column, num_words<span class="op">=</span><span class="dv">20</span>):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Plots the top N most frequent words from cleaned review text.</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">    reviews_df (pd.DataFrame): DataFrame containing the cleaned review text data.</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">    text_column (str): Name of the column containing the cleaned review text.</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">    num_words (int): Number of top frequent words to display (default is 20).</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">    None: Displays the plot.</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tokenize the text into words</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    all_words <span class="op">=</span> []</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> review <span class="kw">in</span> reviews_df[text_column]:</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        tokens <span class="op">=</span> word_tokenize(review.lower())</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        all_words.extend(tokens)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Count the frequency of each word</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    word_freq <span class="op">=</span> Counter(all_words)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the top N most frequent words</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    top_words <span class="op">=</span> word_freq.most_common(num_words)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Prepare data for plotting</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    words, counts <span class="op">=</span> <span class="bu">zip</span>(<span class="op">*</span>top_words)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    top_words_df <span class="op">=</span> pd.DataFrame({<span class="st">'word'</span>: words, <span class="st">'count'</span>: counts})</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the top N most frequent words using Seaborn</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    sns.barplot(x<span class="op">=</span><span class="st">'count'</span>, y<span class="op">=</span><span class="st">'word'</span>, data<span class="op">=</span>top_words_df, hue<span class="op">=</span><span class="st">'count'</span>, dodge<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Frequency'</span>)</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f'Top </span><span class="sc">{</span>num_words<span class="sc">}</span><span class="ss"> Most Frequent Words in Reviews'</span>)</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage:</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>plot_top_words(english_reviews_df, <span class="st">'cleaned_text'</span>, <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-freq-words" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-freq-words-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="demo_files/figure-html/fig-freq-words-output-1.png" width="1020" height="671" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-freq-words-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Top 20 frequent words in reviews
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="insights-1" class="level2">
+<h2 class="anchored" data-anchor-id="insights-1">Insights</h2>
+<ul>
+<li><p>In the reviews for Barossa Valley, Australia, the most frequently mentioned word is “stay,” followed closely by “great,” “place,” and “location.” These terms suggest that reviewers frequently discuss their overall experience and the qualities of their accommodations.</p></li>
+<li><p>The prominence of the word “stay” indicates that visitors often comment on the duration and quality of their visit. The word “great” suggests a generally positive sentiment towards the experience in Barossa Valley. The mention of “place” and “location” highlights the importance of the geographical and environmental aspects of the region to the visitors.</p></li>
+<li><p>The word “house” suggests that many reviews may be related to staying in vacation homes or cottages, which are popular accommodation types in the region. The presence of words like “host” and “recommend” indicates that the hospitality and recommendations from locals or hosts play a crucial role in enhancing the visitor experience.</p></li>
+<li><p>Words like “clean,” “comfortable,” and “perfect” suggest that cleanliness, comfort, and overall perfection of the accommodations are highly appreciated by the reviewers. The frequent use of “cottage” indicates that cottages are a common and preferred type of lodging in Barossa Valley.</p></li>
+<li><p>Lastly, words such as “highly,” “everything,” and “well” point towards positive reviews where guests express their satisfaction with various aspects of their stay.</p></li>
+<li><p>Overall, this analysis shows that tourists in Barossa Valley highly value the natural beauty, hospitality, and quality of accommodations, making it a desirable destination.</p></li>
+</ul>
+</section>
+</section>
+<section id="trends-of-most-common-words-over-the-time" class="level1">
+<h1>Trends of most common words over the time</h1>
+<div id="cell-fig-trend-freq-words" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_word_trends_over_time(reviews_df, date_column, text_column, words_of_interest, title<span class="op">=</span><span class="st">'Trend of Most Common Words in Reviews'</span>):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Plots the trend of the most common words over time.</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">    reviews_df (pd.DataFrame): DataFrame containing the review data.</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">    date_column (str): Name of the column containing the date of the reviews.</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">    text_column (str): Name of the column containing the cleaned review text.</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">    words_of_interest (list): List of words to track.</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">    title (str): Title of the plot (default is 'Trend of Most Common Words in Reviews').</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">    None: Displays the plot.</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ensure the date column is in datetime format</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    reviews_df[date_column] <span class="op">=</span> pd.to_datetime(reviews_df[date_column])</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create a 'month' column</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    reviews_df[<span class="st">'month'</span>] <span class="op">=</span> reviews_df[date_column].dt.to_period(<span class="st">'M'</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialize a DataFrame to store the counts</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    months_sorted <span class="op">=</span> <span class="bu">sorted</span>(reviews_df[<span class="st">'month'</span>].unique())</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    monthly_counts <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>words_of_interest, index<span class="op">=</span>months_sorted)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tokenize the cleaned text and calculate word frequencies</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> month <span class="kw">in</span> monthly_counts.index:</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>        monthly_reviews <span class="op">=</span> reviews_df[reviews_df[<span class="st">'month'</span>] <span class="op">==</span> month][text_column].dropna()</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>        all_words <span class="op">=</span> [word <span class="cf">for</span> review <span class="kw">in</span> monthly_reviews <span class="cf">for</span> word <span class="kw">in</span> review.split()]</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>        word_freq <span class="op">=</span> Counter(all_words)</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> word <span class="kw">in</span> words_of_interest:</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>            monthly_counts.loc[month, word] <span class="op">=</span> word_freq[word]</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fill NaN values with 0 to handle months with no reviews</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    monthly_counts.fillna(<span class="dv">0</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the percentage of usage for each word, avoid division by zero</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    total_counts <span class="op">=</span> monthly_counts.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    total_counts[total_counts <span class="op">==</span> <span class="dv">0</span>] <span class="op">=</span> <span class="dv">1</span>  <span class="co"># Replace zero with one to avoid division by zero</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    monthly_percentage <span class="op">=</span> monthly_counts.div(total_counts, axis<span class="op">=</span><span class="dv">0</span>) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    monthly_percentage <span class="op">=</span> monthly_percentage.astype(<span class="bu">float</span>)</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the data</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">35</span>, <span class="dv">8</span>))</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert index values to strings for plotting</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>    x_values <span class="op">=</span> [<span class="bu">str</span>(month) <span class="cf">for</span> month <span class="kw">in</span> monthly_percentage.index]</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> word <span class="kw">in</span> words_of_interest:</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>        plt.plot(x_values, monthly_percentage[word], label<span class="op">=</span>word)</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>    plt.title(title)</span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Month'</span>)</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Percentage of Usage'</span>)</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>    plt.legend(title<span class="op">=</span><span class="st">'Words'</span>)</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>    plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage:</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>plot_word_trends_over_time(english_reviews_df, <span class="st">'date'</span>, <span class="st">'cleaned_text'</span>, [<span class="st">'host'</span>, <span class="st">'clean'</span>, <span class="st">'location'</span>, <span class="st">'house'</span>, <span class="st">'stay'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-trend-freq-words" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trend-freq-words-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="demo_files/figure-html/fig-trend-freq-words-output-1.png" width="2668" height="707" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trend-freq-words-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Trend of most common words over the time
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="insights-2" class="level2">
+<h2 class="anchored" data-anchor-id="insights-2">Insights</h2>
+<p>The provided plot shows the monthly percentage of usage for five common words (“host,” “clean,” “location,” “house,” and “stay”) in reviews over time.</p>
+<section id="interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation">Interpretation:</h3>
+<ol type="1">
+<li><strong>Stay (Purple Line)</strong>:
+<ul>
+<li>The word “stay” consistently has the highest percentage of usage across the time period. This indicates that guests frequently talk about their overall experience or the duration of their stay.</li>
+<li>The percentage fluctuates but remains significantly higher than the other words, suggesting it’s a primary topic in most reviews.</li>
+</ul></li>
+<li><strong>Location (Green Line)</strong>:
+<ul>
+<li>The word “location” shows a steady presence in the reviews, maintaining a relatively consistent percentage of usage.</li>
+<li>This indicates that the location of the accommodations is an important factor for guests, and they often comment on it.</li>
+</ul></li>
+<li><strong>House (Red Line)</strong>:
+<ul>
+<li>The word “house” also maintains a consistent presence, similar to “location,” but with more fluctuation.</li>
+<li>This suggests that many reviews are about staying in houses, and guests frequently mention their accommodation type.</li>
+</ul></li>
+<li><strong>Host (Blue Line)</strong>:
+<ul>
+<li>The word “host” has a variable percentage of usage over time but remains a common topic.</li>
+<li>This highlights the importance of the host’s role in the guest experience, with guests often discussing the host’s behavior and service.</li>
+</ul></li>
+<li><strong>Clean (Orange Line)</strong>:
+<ul>
+<li>The word “clean” shows a declining trend over time, with significant fluctuations.</li>
+<li>Initially, cleanliness was a more frequently mentioned topic, but its mention has decreased, suggesting either an improvement in cleanliness (leading to fewer complaints) or a shift in guest focus to other aspects.</li>
+</ul></li>
+</ol>
+</section>
+<section id="suggested-actions" class="level3">
+<h3 class="anchored" data-anchor-id="suggested-actions">Suggested Actions:</h3>
+<ol type="1">
+<li><strong>Focus on Cleanliness</strong>:
+<ul>
+<li>Despite the initial high frequency of “clean,” its usage has decreased over time. This could mean that while cleanliness may have improved, it remains a critical factor for guest satisfaction.</li>
+<li>Ensure regular and thorough cleaning protocols are maintained and possibly enhanced to exceed guest expectations.</li>
+</ul></li>
+<li><strong>Enhance Location Information</strong>:
+<ul>
+<li>Since “location” is consistently mentioned, providing detailed information about the local area, nearby attractions, and transportation options could enhance guest satisfaction.</li>
+<li>Consider creating a guide or app that offers recommendations for things to do and places to visit in the vicinity.</li>
+</ul></li>
+<li><strong>Improve Host Interaction</strong>:
+<ul>
+<li>The variable but frequent mention of “host” highlights the importance of the host-guest interaction.</li>
+<li>Provide hosts with training on hospitality and customer service to ensure guests have a positive and memorable experience.</li>
+<li>Encourage hosts to be responsive and helpful, as this can significantly impact reviews.</li>
+</ul></li>
+<li><strong>Highlight Accommodation Types</strong>:
+<ul>
+<li>The frequent mention of “house” suggests that guests value knowing what type of accommodation they will be staying in.</li>
+<li>Clearly describe the type of accommodation in listings, emphasizing unique features and benefits.</li>
+</ul></li>
+<li><strong>Monitor Guest Feedback</strong>:
+<ul>
+<li>Continuously monitor reviews to identify emerging trends and areas for improvement.</li>
+<li>Implement a feedback system to address guest concerns promptly and adapt to changing preferences.</li>
+</ul></li>
+</ol>
+<p>By focusing on these areas, you can enhance the overall guest experience, leading to more positive reviews and potentially higher occupancy rates.</p>
+</section>
+</section>
+</section>
+<section id="top-20-bigrams-and-trigrams" class="level1">
+<h1>Top 20 Bigrams and Trigrams</h1>
+<div class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_top_ngrams(reviews_df, text_column, ngram_range<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">3</span>), num_ngrams<span class="op">=</span><span class="dv">20</span>):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Plots the top N most common bigrams and trigrams from cleaned review text.</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">    reviews_df (pd.DataFrame): DataFrame containing the cleaned review text data.</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">    text_column (str): Name of the column containing the cleaned review text.</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">    ngram_range (tuple): Range of n-grams to consider (default is (2, 3) for bigrams and trigrams).</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">    num_ngrams (int): Number of top n-grams to display (default is 20).</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">    None: Displays the plots.</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    text_data <span class="op">=</span> reviews_df[text_column].values</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Tokenize the text into words</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    tokenized_text <span class="op">=</span> [word_tokenize(sentence) <span class="cf">for</span> sentence <span class="kw">in</span> text_data]</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialize lists to store n-grams</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    ngrams_list <span class="op">=</span> {n: [] <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(ngram_range[<span class="dv">0</span>], ngram_range[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span>)}</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate n-grams</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> tokens <span class="kw">in</span> tokenized_text:</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> n <span class="kw">in</span> ngrams_list:</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>            ngrams_list[n].extend(<span class="bu">list</span>(nltk.ngrams(tokens, n)))</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Flatten the lists and count the frequency of each n-gram</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    ngram_freq <span class="op">=</span> {n: Counter(ngrams_list[n]) <span class="cf">for</span> n <span class="kw">in</span> ngrams_list}</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the top N most frequent n-grams</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    top_ngrams <span class="op">=</span> {n: ngram_freq[n].most_common(num_ngrams) <span class="cf">for</span> n <span class="kw">in</span> ngrams_list}</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plotting the n-grams</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> ngrams_list:</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        ngrams_str <span class="op">=</span> [<span class="st">' '</span>.join(ngram) <span class="cf">for</span> ngram, count <span class="kw">in</span> top_ngrams[n]]</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>        counts <span class="op">=</span> [count <span class="cf">for</span> ngram, count <span class="kw">in</span> top_ngrams[n]]</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>        top_ngrams_df <span class="op">=</span> pd.DataFrame({<span class="st">'ngram'</span>: ngrams_str, <span class="st">'count'</span>: counts})</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>        plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>        sns.barplot(x<span class="op">=</span><span class="st">'count'</span>, y<span class="op">=</span><span class="st">'ngram'</span>, data<span class="op">=</span>top_ngrams_df, hue<span class="op">=</span><span class="st">'count'</span>, dodge<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="ss">f'Top </span><span class="sc">{</span>num_ngrams<span class="sc">}</span><span class="ss"> Most Frequent </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">-grams'</span>)</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">'Frequency'</span>)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="ss">f'</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">-gram'</span>)</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage:</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>plot_top_ngrams(english_reviews_df, <span class="st">'cleaned_text'</span>, (<span class="dv">2</span>, <span class="dv">3</span>), <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-top-bigrams-trigrams" class="cell quarto-figure quarto-figure-center quarto-float anchored" data-execution_count="8">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-top-bigrams-trigrams-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display">
+<div id="fig-top-bigrams-trigrams-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-top-bigrams-trigrams-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="demo_files/figure-html/fig-top-bigrams-trigrams-output-1.png" data-ref-parent="fig-top-bigrams-trigrams" width="1086" height="671" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-top-bigrams-trigrams-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Top 20 bigrams and trigrams
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-top-bigrams-trigrams-2" class="quarto-figure quarto-figure-center quarto-float anchored" width="1130" height="671">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-top-bigrams-trigrams-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="demo_files/figure-html/fig-top-bigrams-trigrams-output-2.png" id="fig-top-bigrams-trigrams-2" data-ref-parent="fig-top-bigrams-trigrams" width="1130" height="671" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-top-bigrams-trigrams-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-top-bigrams-trigrams-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4
+</figcaption>
+</figure>
+</div>
+</div>
+<section id="interpretation-of-the-top-20-trigrams-plot" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation-of-the-top-20-trigrams-plot">Interpretation of the Top 20 Trigrams Plot</h2>
+<p>The plot displays the top 20 most frequent trigrams (three-word combinations) in the reviews. Each bar represents the count of a specific trigram, indicating how often it appears in the reviews. Here are the key points and insights from the plot:</p>
+<ol type="1">
+<li><strong>Highly Positive Recommendations</strong>:
+<ul>
+<li>The most frequent trigram is “would highly recommend,” followed by similar phrases like “great place stay,” “would definitely stay,” and “would definitely recommend.”</li>
+<li>These trigrams suggest that guests are highly satisfied with their experience and are likely to recommend the place to others.</li>
+</ul></li>
+<li><strong>Enjoyable Stays</strong>:
+<ul>
+<li>Phrases like “really enjoyed stay” and “thoroughly enjoyed stay” indicate that guests find their stays enjoyable and pleasant.</li>
+<li>Highlighting these experiences can attract potential guests looking for a positive and enjoyable stay.</li>
+</ul></li>
+<li><strong>Walking Distance Convenience</strong>:
+<ul>
+<li>Several trigrams such as “within walking distance,” “walk main street,” “main street tanunda,” “walking distance main,” and “distance main street” emphasize the convenience of being within walking distance to important locations.</li>
+<li>This is a significant selling point and can be emphasized in marketing materials to attract guests who value convenience and accessibility.</li>
+</ul></li>
+<li><strong>Comfort and Home-Like Feel</strong>:
+<ul>
+<li>Trigrams like “home away home” and “made u feel” suggest that guests feel comfortable and at home during their stay.</li>
+<li>Promoting the accommodation as a “home away from home” can appeal to guests seeking comfort and a welcoming atmosphere.</li>
+</ul></li>
+<li><strong>Lovely and Beautiful Descriptions</strong>:
+<ul>
+<li>Phrases like “lovely place stay” and “beautiful place stay” highlight the aesthetic appeal and pleasant environment of the accommodation.</li>
+<li>Visual marketing materials can focus on showcasing the beauty and charm of the place.</li>
+</ul></li>
+<li><strong>Barossa-Specific Mentions</strong>:
+<ul>
+<li>The trigram “place stay barossa” indicates that guests frequently mention the location, Barossa Valley, which is a popular wine region in Australia.</li>
+<li>Emphasizing the unique attributes and attractions of Barossa Valley can attract guests interested in wine tourism and the region’s offerings.</li>
+</ul></li>
+</ol>
+<section id="suggested-actions-based-on-the-plot" class="level3">
+<h3 class="anchored" data-anchor-id="suggested-actions-based-on-the-plot">Suggested Actions Based on the Plot</h3>
+<ol type="1">
+<li><strong>Leverage Positive Reviews</strong>:
+<ul>
+<li>Use guest testimonials and reviews that include phrases like “would highly recommend” and “would definitely stay” in marketing campaigns to build trust and attract new guests.</li>
+</ul></li>
+<li><strong>Highlight Walking Distance Convenience</strong>:
+<ul>
+<li>Emphasize the convenience of being within walking distance to key attractions, restaurants, and amenities in your digital marketing efforts.</li>
+<li>Create maps or guides that show what guests can access within walking distance from the accommodation.</li>
+</ul></li>
+<li><strong>Promote Comfort and Home-Like Experience</strong>:
+<ul>
+<li>Highlight the comfort and homely atmosphere in your listings and marketing materials. Use phrases like “home away from home” to appeal to guests seeking a cozy and welcoming environment.</li>
+</ul></li>
+<li><strong>Showcase Aesthetic Appeal</strong>:
+<ul>
+<li>Use high-quality images and videos to showcase the beauty and charm of the accommodation. Highlight the “lovely” and “beautiful” aspects in visual content.</li>
+</ul></li>
+<li><strong>Emphasize Barossa Valley Attractions</strong>:
+<ul>
+<li>Promote the unique attractions of Barossa Valley, such as wine tours, scenic landscapes, and cultural experiences. Highlight how the accommodation provides easy access to these attractions.</li>
+</ul></li>
+</ol>
+<p>By focusing on these aspects, you can enhance your marketing strategies, attract more guests, and improve overall guest satisfaction.</p>
+</section>
+</section>
+</section>
+<section id="top-40-words-contribution-towards-positive-or-negative-sentiment-of-the-reviews" class="level1">
+<h1>Top 40 words contribution towards positive or negative sentiment of the reviews</h1>
+<div id="cell-fig-top-40-words-sentiments" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_top_sentiment_contributors(reviews_df, text_column, num_words<span class="op">=</span><span class="dv">40</span>):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Plots the top N words contributing to the positive or negative sentiment of reviews.</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">    reviews_df (pd.DataFrame): DataFrame containing the cleaned review text data.</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">    text_column (str): Name of the column containing the cleaned review text.</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">    num_words (int): Number of top words to display (default is 40).</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">    None: Displays the plot.</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Split text into words and create a DataFrame</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    words <span class="op">=</span> reviews_df[text_column].<span class="bu">str</span>.split(expand<span class="op">=</span><span class="va">True</span>).stack().reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    words_df <span class="op">=</span> pd.DataFrame(words, columns<span class="op">=</span>[<span class="st">'word'</span>])</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialize sentiment analyzer</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    sia <span class="op">=</span> SentimentIntensityAnalyzer()</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate sentiment scores for each word</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    words_df[<span class="st">'sentiment'</span>] <span class="op">=</span> words_df[<span class="st">'word'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: sia.polarity_scores(x)[<span class="st">'compound'</span>])</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate contributions by summing sentiment scores for each word</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    contributions <span class="op">=</span> words_df.groupby(<span class="st">'word'</span>)[<span class="st">'sentiment'</span>].<span class="bu">sum</span>().reset_index(name<span class="op">=</span><span class="st">'contribution'</span>)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Select top N words with the greatest contributions</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    top_words <span class="op">=</span> contributions.reindex(contributions[<span class="st">'contribution'</span>].<span class="bu">abs</span>().sort_values(ascending<span class="op">=</span><span class="va">False</span>).index).head(num_words)</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Assign colors based on contribution</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    colors <span class="op">=</span> [<span class="st">'red'</span> <span class="cf">if</span> x <span class="op">&lt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">'green'</span> <span class="cf">for</span> x <span class="kw">in</span> top_words[<span class="st">'contribution'</span>]]</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the results</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">9</span>))</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    plt.barh(top_words[<span class="st">'word'</span>], top_words[<span class="st">'contribution'</span>], color<span class="op">=</span>colors)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Sentiment value * number of occurrences'</span>)</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f'Top </span><span class="sc">{</span>num_words<span class="sc">}</span><span class="ss"> words with the greatest contributions to positive/negative sentiment'</span>)</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    plt.gca().invert_yaxis()  <span class="co"># Invert y-axis to have the highest contribution at the top</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage:</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>plot_top_sentiment_contributors(english_reviews_df, <span class="st">'cleaned_text'</span>, <span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-top-40-words-sentiments" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-top-40-words-sentiments-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="demo_files/figure-html/fig-top-40-words-sentiments-output-1.png" width="1002" height="745" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-top-40-words-sentiments-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Top 40 words contribution towards positive or negative sentiment of reviews
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>We have only one word “fire” contributing towards negative sentiment</li>
+</ul>
+</section>
+<section id="lets-dive-deeper-into-the-reviews-having-the-word-fire-for-further-analysis" class="level1">
+<h1>Lets dive deeper into the reviews having the word fire for further analysis</h1>
+<div id="cell-fig-fire-reviews-sentiments" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filtering the reviews with word fire</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>filtered_reviews_df <span class="op">=</span> english_reviews_df[english_reviews_df[<span class="st">'cleaned_text'</span>].<span class="bu">str</span>.contains(<span class="vs">r'\bfire\b'</span>, case<span class="op">=</span><span class="va">False</span>, regex<span class="op">=</span><span class="va">True</span>)]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the VADER sentiment analyzer</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>sia <span class="op">=</span> SentimentIntensityAnalyzer()</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to classify sentiment</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_sentiment(review):</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> sia.polarity_scores(review)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    compound <span class="op">=</span> scores[<span class="st">'compound'</span>]</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> compound <span class="op">&gt;=</span> <span class="fl">0.05</span>:</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'positive'</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> compound <span class="op">&lt;=</span> <span class="op">-</span><span class="fl">0.05</span>:</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'negative'</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'neutral'</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to classify sentiment of each review</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>filtered_reviews_df[<span class="st">'sentiment'</span>] <span class="op">=</span> filtered_reviews_df[<span class="st">'cleaned_text'</span>].<span class="bu">apply</span>(classify_sentiment)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of positive, negative, and neutral reviews</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>sentiment_counts <span class="op">=</span> filtered_reviews_df[<span class="st">'sentiment'</span>].value_counts()</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sentiment_counts)</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the sentiment distribution </span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>sentiment_counts.plot(kind<span class="op">=</span><span class="st">'bar'</span>, color<span class="op">=</span>[<span class="st">'green'</span>, <span class="st">'red'</span>, <span class="st">'gray'</span>])</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Sentiment Distribution of Reviews Containing the Word "Fire"'</span>)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Sentiment'</span>)</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Number of Reviews'</span>)</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>sentiment
+positive    797
+negative      3
+neutral       1
+Name: count, dtype: int64</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-fire-reviews-sentiments" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fire-reviews-sentiments-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="demo_files/figure-html/fig-fire-reviews-sentiments-output-2.png" width="593" height="495" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fire-reviews-sentiments-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Sentiments Distribution of reviews containing the word fire
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="insights-3" class="level2">
+<h2 class="anchored" data-anchor-id="insights-3">Insights</h2>
+<p>801 reviews contains the word “fire” and only three have a negative sentiment. Let’s examine the content of these reviews so we can get some information about the problems customers have faced</p>
+</section>
+</section>
+<section id="content-of-the-reviews" class="level1">
+<h1>Content of the Reviews</h1>
+<p>::: {#37962040 .cell execution_count=11} ``` {.python .cell-code code-fold=“true”} # Display the full content of the negative reviews</p>
+<p>bad_reviews = filtered_reviews_df[filtered_reviews_df[“sentiment”] == ‘negative’].cleaned_text for i, review in enumerate(bad_reviews, 1): print(f”Review {i}:“) print(review) print(”” + “=”*80 + “”)</p>
+<pre><code>
+::: {.cell-output .cell-output-stdout}</code></pre>
+<p>Review 1: booking process fine however room quite tired hotch potch furniture provided lacked appreciable decor theme lovely wood fire old inefficient split system air con couldnt keep chill room unfortunately toilet broken end decided stay night room would probably fine people night probably better option around</p>
+<p>================================================================================</p>
+<p>Review 2: house presented beautifully inside well stocked fridge couple day breakfast supply heating open fire pay extra wood st use night wasnt cheaper st night clearly didnt enough research thought location bit far stay ruined maria blamed stain sheet group already wanted</p>
+<p>================================================================================</p>
+<p>Review 3: idyllic cottage modern touch large outside deck summer day cozy fire winter walking distance cafe boutique restaurant real taste barossa done right</p>
+<p>================================================================================</p>
+<pre><code>:::
+:::
+
+
+**Review 1:**
+
+**Problems:**
+* Room decor is outdated and mismatched.
+* Inefficient heating and cooling system.
+* Broken toilet.
+**Suggestions:**
+* Update the room's furniture and decor to create a cohesive and appealing theme.
+* Replace or service the heating and cooling system to ensure comfort.
+* Ensure all amenities, including toilets, are in working condition before guests arrive.
+
+**Review 2:**
+
+**Problems:**
+* Extra charge for firewood was unexpected.
+* Stained sheets.
+* Perception of the location being too far.
+**Suggestions:**
+* Clearly communicate any additional charges during the booking process.
+* Ensure all linens are clean and stain-free.
+* Provide detailed location information to set accurate expectations.
+
+**Review 3:**
+**Problems:**
+* None mentioned explicitly.
+* Positive aspects include cozy fire in winter and walking distance to cafes and restaurants.
+**Suggestions:**
+* Emphasize the positive features, such as the cozy fire and proximity to local attractions, in marketing materials.
+* Maintain these features consistently to meet guest expectations.
+
+These suggestions aim to improve guest satisfaction by addressing the highlighted issues and leveraging positive feedback for marketing purposes.
+
+
+
+# Emotions in Barrosa Valley Australia Airbnb Reviews
+
+::: {#cell-fig-emotions-of-reviews .cell execution_count=12}
+``` {.python .cell-code code-fold="true"}
+# Extract words and their emotions using NRC
+def get_nrc_sentiments(text):
+  nrc = NRCLex(text)
+  return pd.Series(nrc.raw_emotion_scores)
+
+# Apply the function to each cleaned_text
+emotion_scores = english_reviews_df['cleaned_text'].apply(get_nrc_sentiments)
+emotion_scores.fillna(0, inplace=True)
+
+# Separate positive/negative sentiments and emotions
+sentiments = emotion_scores[['positive', 'negative']].sum().sort_values(ascending=False)
+emotions = emotion_scores.drop(['positive', 'negative'], axis=1).sum().sort_values(ascending=False)
+
+# Calculate percentages for sentiments and emotions
+sentiment_pct = (sentiments / sentiments.sum()) * 100
+emotion_pct = (emotions / emotions.sum()) * 100
+
+# Create a DataFrame for plotting
+
+
+emotion_df = emotion_pct.reset_index()
+emotion_df.columns = ['emotion', 'percentage']
+emotion_df['scores'] = emotions.values
+
+
+
+# Plot emotions
+plt.figure(figsize=(12, 6))
+sns.barplot(x='scores', y='emotion', data=emotion_df, hue = 'emotion')
+for index, row in emotion_df.iterrows():
+  plt.text(row['scores'], index, f"{row['percentage']:.1f}%", color='black', ha="left")
+plt.xlabel('Scores')
+plt.ylabel('Emotion')
+plt.title('Emotions of Baroosa Valley Australia Airbnb Reviews')
+plt.show()</code></pre>
+<div class="cell-output cell-output-display">
+<div id="fig-emotions-of-reviews" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-emotions-of-reviews-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="demo_files/figure-html/fig-emotions-of-reviews-output-1.png" width="1018" height="523" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-emotions-of-reviews-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Emotions of Baroosa Valley Australia Airbnb Reviews
+</figcaption>
+</figure>
+</div>
+</div>
+<p>:::</p>
+<ul>
+<li><strong>The top three emotions in Barossa Valley Australia reviews from Airbnb are joy, trust and anticipation</strong></li>
+</ul>
+</section>
+<section id="average-monthly-sentiment-scores" class="level1">
+<h1>Average monthly sentiment scores</h1>
+<div id="cell-fig-sentiment-scores" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the SentimentIntensityAnalyzer</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>sid <span class="op">=</span> SentimentIntensityAnalyzer()</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply sentiment analysis</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>sentiment_scores <span class="op">=</span> english_reviews_df[<span class="st">'cleaned_text'</span>].<span class="bu">apply</span>(sid.polarity_scores)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract compound sentiment scores</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>sentiment <span class="op">=</span> sentiment_scores.<span class="bu">apply</span>(<span class="kw">lambda</span> x: x[<span class="st">'compound'</span>])</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add sentiment scores to the DataFrame using .loc</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>english_reviews_df.loc[:, <span class="st">'sentiment'</span>] <span class="op">=</span> sentiment</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the date column as the index</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>english_reviews_df.set_index(<span class="st">'date'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Resample to monthly and calculate the mean sentiment score</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>monthly_sentiment <span class="op">=</span> english_reviews_df[<span class="st">'sentiment'</span>].resample(<span class="st">'M'</span>).mean()</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the average monthly sentiment score</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>plt.plot(monthly_sentiment, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, color<span class="op">=</span><span class="st">'b'</span>)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Year'</span>)</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Sentiment Score'</span>)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Average Monthly Sentiment Score'</span>)</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)  <span class="co"># Sentiment scores range from -1 to 1</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-sentiment-scores" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sentiment-scores-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="demo_files/figure-html/fig-sentiment-scores-output-1.png" width="980" height="523" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sentiment-scores-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Average monthly sentiment scores
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="insights-4" class="level2">
+<h2 class="anchored" data-anchor-id="insights-4">Insights</h2>
+<p>The plot displays the average monthly sentiment scores of Airbnb reviews from customers in the Barossa Valley, Australia, over a span from 2014 to 2024. Here is an interpretation of the plot:</p>
+<ol type="1">
+<li><p><strong>Overall Sentiment</strong>: The sentiment scores are generally high, consistently above 0.75, indicating predominantly positive reviews throughout the period.</p></li>
+<li><p><strong>Initial Volatility</strong>: There is some noticeable volatility in the sentiment scores during the early years (2014). This could be due to a lower volume of reviews, which might make the average more sensitive to individual negative reviews.</p></li>
+<li><p><strong>Stabilization</strong>: After the initial volatility, the sentiment scores stabilize and remain consistently high, close to 1.0. This suggests that the Airbnb properties in the Barossa Valley have maintained a high level of customer satisfaction over the years.</p></li>
+<li><p><strong>Slight Fluctuations</strong>: There are minor fluctuations in the sentiment scores throughout the period, but these do not significantly deviate from the high average. This indicates occasional variations in customer experiences but nothing drastic.</p></li>
+<li><p><strong>Recent Consistency</strong>: From around 2016 onwards, the sentiment scores exhibit remarkable consistency, indicating sustained high-quality experiences for customers.</p></li>
+</ol>
+<p>In summary, the plot indicates that the Airbnb reviews for Barossa Valley, Australia, have been overwhelmingly positive over the past decade, with initial variability but long-term stability in customer satisfaction.</p>
+</section>
+</section>
+<section id="suggestions-for-digital-marketing" class="level1">
+<h1>Suggestions for Digital Marketing</h1>
+<ul>
+<li>To enhance digital and social media marketing for Barossa Valley, highlight positive guest experiences and showcase popular accommodation types like cottages and vacation homes. Emphasize the hospitality of local hosts and the region’s high standards of cleanliness and comfort. Utilize stunning visuals to promote the natural beauty and key attractions, and leverage guest recommendations and user-generated content to build community and trust. Create engaging and informative content to frame Barossa Valley as a well-rounded and highly recommended destination.</li>
+</ul>
+<section id="suggested-action-plan" class="level3">
+<h3 class="anchored" data-anchor-id="suggested-action-plan">Suggested Action Plan:</h3>
+<ol type="1">
+<li><strong>Focus on Cleanliness</strong>:
+<ul>
+<li>Maintain and enhance cleaning protocols to exceed guest expectations and keep cleanliness a top priority.</li>
+</ul></li>
+<li><strong>Enhance Location Information</strong>:
+<ul>
+<li>Provide detailed guides or digital apps with information about local attractions and transportation options to improve guest satisfaction.</li>
+</ul></li>
+<li><strong>Improve Host Interaction</strong>:
+<ul>
+<li>Train hosts on hospitality and customer service to ensure positive guest experiences and encourage responsive and helpful interactions.</li>
+</ul></li>
+<li><strong>Highlight Accommodation Types</strong>:
+<ul>
+<li>Clearly describe the type of accommodation in listings, emphasizing unique features to align with guest preferences.</li>
+</ul></li>
+<li><strong>Monitor Guest Feedback</strong>:
+<ul>
+<li>Continuously track and analyze reviews to identify trends and implement a feedback system for prompt issue resolution and adaptation to guest needs.</li>
+</ul></li>
+<li><strong>Leverage Positive Reviews</strong>: Share guest testimonials with strong recommendations on social media to attract new guests.</li>
+<li><strong>Highlight Walking Distance Convenience</strong>: Emphasize proximity to key attractions with engaging maps and guides.</li>
+<li><strong>Promote Comfort and Home-Like Experience</strong>: Showcase the homely atmosphere with appealing visuals and guest quotes.</li>
+<li><strong>Showcase Aesthetic Appeal and Barossa Valley Attractions</strong>: Regularly post high-quality images and promote local attractions to enhance digital marketing efforts.</li>
+</ol>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
